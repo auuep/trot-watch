@@ -9,6 +9,6 @@
 #import <Foundation/Foundation.h>
 #import <CoreLocation/CoreLocation.h>
 
-@interface LocationHandler : NSObject
+@interface LocationHandler : NSObject <CLLocationManagerDelegate>
 
 @end

@@ -7,6 +7,7 @@
 //
 
 #import "CurrentSpeedViewController.h"
+#import "LocationHandler.h"
 #import <CoreLocation/CoreLocation.h>
 
 @interface CurrentSpeedViewController () <CLLocationManagerDelegate>
@@ -18,6 +19,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *tempoLabel;
 @property (strong, nonatomic) IBOutlet UIButton *stopButton;
 @property (strong, nonatomic) IBOutlet UIButton *startButton;
+@property (strong, nonatomic) LocationHandler *locationHandler;
 
 @end
 
@@ -30,6 +32,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.locationHandler = [[LocationHandler alloc] init];
+    
 	manager = [[CLLocationManager alloc] init];
     
     geocoder = [[CLGeocoder alloc] init];
