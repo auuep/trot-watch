@@ -77,7 +77,7 @@
 }
 
 -(void)setSpeedMeterPerSecondTo:(double)speed {
-    self.speedMeterPerSecond.text =[NSString stringWithFormat:@"%2.1f", speed];
+    self.speedMeterPerSecond.text =[NSString stringWithFormat:@"%2.2f", speed];
 }
 
 -(void)setSpeedKilometerPerHourTo:(double)speed {
@@ -86,10 +86,12 @@
 
 #pragma mark CLLocationManagerDelegate Methods
 
--(void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
+-(void)locationManager:(CLLocationManager *)themanager didFailWithError:(NSError *)error {
     
     NSLog(@"Error: %@", error);
     NSLog(@"Failed to get location.");
+    [manager stopUpdatingLocation];
+    [self switchButtonToStart];
 }
 
 -(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
@@ -111,8 +113,6 @@
         [self setTempoTo:tempo];
 
     }
-    
-    
 }
 
 -(NSString *)stringFromTempo:(double)tempo {
