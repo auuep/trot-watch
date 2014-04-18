@@ -21,9 +21,14 @@
 
 - (id)init
 {
-    return [self initWithSpeedMS:0];
+    return [self initWithSpeedMS:0.0];
 }
 
+-(void)setSpeedMeterPerSecondTo:(double)speedMeterPerSecond {
+    self.speedMeterPerSecond = speedMeterPerSecond;
+    self.speedKmPerHour = speedMeterPerSecond * 3.6;
+    self.tempoKm = [self convertToTempo:speedMeterPerSecond];
+}
 
 -(NSString *)stringFromTempo:(double)tempo {
     float minutes = floor(tempo/60);

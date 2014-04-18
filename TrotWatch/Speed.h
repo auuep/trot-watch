@@ -16,5 +16,6 @@
 @property (nonatomic) double speedKmPerHour;
 
 -(id)initWithSpeedMS:(double)speed;
+-(void)setSpeedMeterPerSecondTo:(double)speedMeterPerSecond;
 
 @end

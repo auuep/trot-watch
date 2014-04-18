@@ -22,7 +22,7 @@
 @end
 
 @implementation CurrentSpeedViewController {
-    CLLocationManager *manager;
+
 }
 
 - (void)viewDidLoad
@@ -30,20 +30,17 @@
     [super viewDidLoad];
     
     self.locationHandler = [[LocationHandler alloc] init];
-    
-	manager = [[CLLocationManager alloc] init];
+    [_locationHandler addObserver:self forKeyPath:@"isUpdating" options:NSKeyValueObservingOptionNew context:nil];
+    [_locationHandler addObserver:self forKeyPath:@"currentSpeed.speedMeterPerSecond" options:NSKeyValueObservingOptionNew context:nil];
+
 
 }
 - (IBAction)startPressed:(UIButton *)sender {
-    manager.delegate = self;
-    manager.desiredAccuracy = kCLLocationAccuracyBest;
-    
-    [manager startUpdatingLocation];
     [_locationHandler startUpdatingLocation];
     [self switchButtonToStop];
  }
 - (IBAction)stopPressed:(id)sender {
-    [manager stopUpdatingLocation];
+
     [_locationHandler stopUpdatingLocation];
     [self switchButtonToStart];
 }
@@ -89,8 +86,8 @@
 -(void)locationManager:(CLLocationManager *)themanager didFailWithError:(NSError *)error {
     
     NSLog(@"Error: %@", error);
-    NSLog(@"Failed to get location.");
-    [manager stopUpdatingLocation];
+    NSLog(@"Failed to get location. :/");
+    //[manager stopUpdatingLocation];
     [self switchButtonToStart];
 }
 
@@ -128,6 +125,29 @@
     NSLog(@"\n Tempo: %.6f", tempo);
 
     return tempo;
+}
+
+#pragma mark KVO methods
+
+-(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+    if ([keyPath isEqualToString:@"isUpdating"]) {
+        NSLog(@"KVO IS WORKING. isUpdating changed.");
+        if ([_locationHandler isUpdating]) {
+            [self switchButtonToStop];
+        } else {
+            [self switchButtonToStart];
+        }
+    }
+    else if ([keyPath isEqualToString:@"currentSpeed.speedMeterPerSecond"]) {
+        NSLog(@"----- KVO. currentSpeed changed. -----");
+        [self setSpeedMeterPerSecondTo:_locationHandler.currentSpeed.speedMeterPerSecond];
+        [self setSpeedKilometerPerHourTo:_locationHandler.currentSpeed.speedKmPerHour];
+        [self setTempoTo:_locationHandler.currentSpeed.tempoKm];
+
+
+
+    }
+   
 }
 
 @end

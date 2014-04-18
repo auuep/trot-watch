@@ -8,8 +8,12 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreLocation/CoreLocation.h>
+#import "Speed.h"
 
 @interface LocationHandler : NSObject <CLLocationManagerDelegate>
+
+@property (strong, nonatomic) Speed *currentSpeed;
+@property (nonatomic) BOOL isUpdating;
 
 - (void)startUpdatingLocation;
 - (void)stopUpdatingLocation;
