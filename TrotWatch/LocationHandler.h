@@ -11,4 +11,7 @@
 
 @interface LocationHandler : NSObject <CLLocationManagerDelegate>
 
+- (void)startUpdatingLocation;
+- (void)stopUpdatingLocation;
+
 @end

@@ -20,8 +20,20 @@
 - (id)init
 {
     self = [super init];
+    
+    manager = [[CLLocationManager alloc] init];
+    
+    geocoder = [[CLGeocoder alloc] init];
+    
     NSLog(@"Created the LocationHandler");
     return self;
 }
 
+- (void)startUpdatingLocation {
+    NSLog(@"LocationHandler: Starting to update location");
+}
+
+- (void)stopUpdatingLocation {
+    NSLog(@"LocationHandler: Stop updating the location");
+}
 @end
