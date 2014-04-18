@@ -14,7 +14,7 @@
 		E64F733C190058C900EA9D57 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E64F733B190058C900EA9D57 /* main.m */; };
 		E64F7340190058C900EA9D57 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E64F733F190058C900EA9D57 /* AppDelegate.m */; };
 		E64F7343190058C900EA9D57 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E64F7341190058C900EA9D57 /* Main.storyboard */; };
-		E64F7346190058C900EA9D57 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E64F7345190058C900EA9D57 /* ViewController.m */; };
+		E64F7346190058C900EA9D57 /* CurrentSpeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E64F7345190058C900EA9D57 /* CurrentSpeedViewController.m */; };
 		E64F7348190058C900EA9D57 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E64F7347190058C900EA9D57 /* Images.xcassets */; };
 		E64F734F190058CA00EA9D57 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E64F734E190058CA00EA9D57 /* XCTest.framework */; };
 		E64F7350190058CA00EA9D57 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E64F732F190058C900EA9D57 /* Foundation.framework */; };
@@ -23,6 +23,7 @@
 		E64F735B190058CA00EA9D57 /* TrotWatchTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E64F735A190058CA00EA9D57 /* TrotWatchTests.m */; };
 		E64F736619005D3100EA9D57 /* LocationHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = E64F736519005D3100EA9D57 /* LocationHandler.m */; };
 		E64F736819005D7C00EA9D57 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E64F736719005D7C00EA9D57 /* CoreLocation.framework */; };
+		E6F22277190127F9000302FB /* testTempoCalculation.m in Sources */ = {isa = PBXBuildFile; fileRef = E6F22276190127F9000302FB /* testTempoCalculation.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,8 +48,8 @@
 		E64F733E190058C900EA9D57 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		E64F733F190058C900EA9D57 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		E64F7342190058C900EA9D57 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		E64F7344190058C900EA9D57 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		E64F7345190058C900EA9D57 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		E64F7344190058C900EA9D57 /* CurrentSpeedViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CurrentSpeedViewController.h; sourceTree = "<group>"; };
+		E64F7345190058C900EA9D57 /* CurrentSpeedViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CurrentSpeedViewController.m; sourceTree = "<group>"; };
 		E64F7347190058C900EA9D57 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		E64F734D190058CA00EA9D57 /* TrotWatchTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TrotWatchTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E64F734E190058CA00EA9D57 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -58,6 +59,7 @@
 		E64F736419005D3100EA9D57 /* LocationHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationHandler.h; sourceTree = "<group>"; };
 		E64F736519005D3100EA9D57 /* LocationHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationHandler.m; sourceTree = "<group>"; };
 		E64F736719005D7C00EA9D57 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		E6F22276190127F9000302FB /* testTempoCalculation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = testTempoCalculation.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,8 +124,8 @@
 				E64F733E190058C900EA9D57 /* AppDelegate.h */,
 				E64F733F190058C900EA9D57 /* AppDelegate.m */,
 				E64F7341190058C900EA9D57 /* Main.storyboard */,
-				E64F7344190058C900EA9D57 /* ViewController.h */,
-				E64F7345190058C900EA9D57 /* ViewController.m */,
+				E64F7344190058C900EA9D57 /* CurrentSpeedViewController.h */,
+				E64F7345190058C900EA9D57 /* CurrentSpeedViewController.m */,
 				E64F7347190058C900EA9D57 /* Images.xcassets */,
 				E64F7336190058C900EA9D57 /* Supporting Files */,
 				E64F736419005D3100EA9D57 /* LocationHandler.h */,
@@ -146,6 +148,7 @@
 		E64F7354190058CA00EA9D57 /* TrotWatchTests */ = {
 			isa = PBXGroup;
 			children = (
+				E6F22276190127F9000302FB /* testTempoCalculation.m */,
 				E64F735A190058CA00EA9D57 /* TrotWatchTests.m */,
 				E64F7355190058CA00EA9D57 /* Supporting Files */,
 			);
@@ -258,7 +261,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E64F7346190058C900EA9D57 /* ViewController.m in Sources */,
+				E64F7346190058C900EA9D57 /* CurrentSpeedViewController.m in Sources */,
 				E64F7340190058C900EA9D57 /* AppDelegate.m in Sources */,
 				E64F733C190058C900EA9D57 /* main.m in Sources */,
 				E64F736619005D3100EA9D57 /* LocationHandler.m in Sources */,
@@ -270,6 +273,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E64F735B190058CA00EA9D57 /* TrotWatchTests.m in Sources */,
+				E6F22277190127F9000302FB /* testTempoCalculation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -466,6 +470,7 @@
 				E64F7360190058CA00EA9D57 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E64F7361190058CA00EA9D57 /* Build configuration list for PBXNativeTarget "TrotWatchTests" */ = {
 			isa = XCConfigurationList;
@@ -474,6 +479,7 @@
 				E64F7363190058CA00EA9D57 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
