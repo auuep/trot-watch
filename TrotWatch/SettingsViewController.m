@@ -9,6 +9,7 @@
 #import "SettingsViewController.h"
 
 @interface SettingsViewController ()
+@property (strong, nonatomic) IBOutlet UITableView *optionsTableView;
 
 @end
 
