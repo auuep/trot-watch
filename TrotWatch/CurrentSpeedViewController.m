@@ -45,6 +45,9 @@
     [self switchButtonToStart];
 }
 
+- (IBAction)settingsPressed:(UIButton *)sender {
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
