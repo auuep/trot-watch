@@ -81,57 +81,16 @@
     self.speedKilometerPerHour.text =[NSString stringWithFormat:@"%2.1f", speed];
 }
 
-#pragma mark CLLocationManagerDelegate Methods
-
--(void)locationManager:(CLLocationManager *)themanager didFailWithError:(NSError *)error {
-    
-    NSLog(@"Error: %@", error);
-    NSLog(@"Failed to get location. :/");
-    //[manager stopUpdatingLocation];
-    [self switchButtonToStart];
-}
-
--(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
-//    self.stopButton.hidden = false;
-//    self.startButton.hidden = true;
-    
-    NSLog(@"New location: %@", [locations lastObject]);
-    
-    CLLocation *currentLocation = [locations lastObject];
-    
-    if (currentLocation) {
-        
-        CLLocationSpeed currentSpeed = currentLocation.speed;
-        CLLocationSpeed currentSpeedKmph = currentSpeed * 3.6;
-        CLLocationSpeed tempo = [self convertToTempo:currentSpeed];
-        
-        [self setSpeedMeterPerSecondTo:currentSpeed];
-        [self setSpeedKilometerPerHourTo:currentSpeedKmph];
-        [self setTempoTo:tempo];
-
-    }
-}
-
 -(NSString *)stringFromTempo:(double)tempo {
     float minutes = floor(tempo/60);
     float seconds = round(tempo - minutes * 60);
     return [NSString stringWithFormat:@"%.0f.%02.0f", minutes, seconds];
 }
 
--(CLLocationSpeed)convertToTempo:(CLLocationSpeed)speed {
-    /* Convert from m/s to s/km ...... 1/((km/1000)/s) */
-    NSTimeInterval tempo; // min / km = 1/(((m/s)*3.6)/60)
-    tempo = 1/(speed/1000);
-    NSLog(@"\n Tempo: %.6f", tempo);
-
-    return tempo;
-}
-
-#pragma mark KVO methods
+#pragma mark Key Value Observations
 
 -(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
     if ([keyPath isEqualToString:@"isUpdating"]) {
-        NSLog(@"KVO IS WORKING. isUpdating changed.");
         if ([_locationHandler isUpdating]) {
             [self switchButtonToStop];
         } else {
@@ -139,13 +98,9 @@
         }
     }
     else if ([keyPath isEqualToString:@"currentSpeed.speedMeterPerSecond"]) {
-        NSLog(@"----- KVO. currentSpeed changed. -----");
         [self setSpeedMeterPerSecondTo:_locationHandler.currentSpeed.speedMeterPerSecond];
         [self setSpeedKilometerPerHourTo:_locationHandler.currentSpeed.speedKmPerHour];
         [self setTempoTo:_locationHandler.currentSpeed.tempoKm];
-
-
-
     }
    
 }
