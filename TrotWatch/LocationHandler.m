@@ -21,12 +21,8 @@
     
     manager = [[CLLocationManager alloc] init];
     
-    geocoder = [[CLGeocoder alloc] init];
-    
     _currentSpeed = [[Speed alloc] initWithSpeedMS:0];
-    
-    NSLog(@"Created the LocationHandler");
-    //[self addObserver:self forKeyPath:@"isUpdating" options:NSKeyValueObservingOptionNew context:nil];
+ 
     return self;
 }
 
@@ -44,18 +40,17 @@
     self.isUpdating = false;
 }
 
-#pragma mark CLLocationManagerDelegate methods
+#pragma mark - CLLocationManagerDelegate methods
+
 -(void)locationManager:(CLLocationManager *)themanager didFailWithError:(NSError *)error {
     
     NSLog(@"Error: %@", error);
-    NSLog(@"Failed to get location. :/");
+    NSLog(@"Failed to get location.");
     [manager stopUpdatingLocation];
     self.isUpdating = false;
     
 }
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
-    NSLog(@"LocationHandler: New location: %@", [locations lastObject]);
-
     CLLocation *currentLocation = [locations lastObject];
     
     if (currentLocation) {
