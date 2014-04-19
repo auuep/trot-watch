@@ -11,8 +11,6 @@
 @implementation LocationHandler {
     LocationHandler *locationHandler;
     CLLocationManager *manager;
-    CLGeocoder *geocoder;
-    CLPlacemark *placemark;
 }
 
 - (id)init
