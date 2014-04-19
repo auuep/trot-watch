@@ -27,7 +27,8 @@
 -(void)setSpeedMeterPerSecondTo:(double)speedMeterPerSecond {
     self.speedMeterPerSecond = speedMeterPerSecond;
     self.speedKmPerHour = speedMeterPerSecond * 3.6;
-    self.tempoKm = [self convertToTempo:speedMeterPerSecond];
+    self.tempoKm = [self convertToTempo:speedMeterPerSecond unit:@"km"];
+    self.tempoMile = [self convertToTempo:speedMeterPerSecond unit:@"mile"];
 }
 
 -(NSString *)stringFromTempo:(double)tempo {
@@ -36,12 +37,23 @@
     return [NSString stringWithFormat:@"%.0f.%.0f", minutes, seconds];
 }
 
--(double)convertToTempo:(double)speed {
+-(double)convertToTempo:(double)speed unit:(NSString *)unit {
     /* Convert from m/s to s/km ...... 1/((km/1000)/s) */
     NSTimeInterval tempo; // min / km = 1/(((m/s)*3.6)/60)
-    tempo = 1/(speed/1000);
-    NSLog(@"\n Tempo: %.6f", tempo);
     
+    if ([unit isEqualToString:@"km"]) {
+        tempo = 1/(speed/1000);
+        NSLog(@"\n Tempo: %.6f", tempo);
+    }
+    
+    else if ([unit isEqualToString:@"mile"]) {
+        double mile = 1.609344 * 1000;
+        tempo = 1/(speed/mile);
+    }
+    else {
+        NSLog(@"Unknown format: %@,. Need to be \"km\" or \"mile\".", unit);
+        return 0;
+    }
     return tempo;
 }
 

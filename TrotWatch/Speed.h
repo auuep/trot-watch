@@ -11,7 +11,7 @@
 @interface Speed : NSObject
 
 @property (nonatomic) double tempoKm;
-@property (nonatomic) double tempoMiles;
+@property (nonatomic) double tempoMile;
 @property (nonatomic) double speedMeterPerSecond;
 @property (nonatomic) double speedKmPerHour;
 
