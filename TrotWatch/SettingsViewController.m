@@ -35,6 +35,8 @@
     self.settingsTypes = [NSArray arrayWithObjects:@"Treshold", @"MilesOrKm", @"Harr", nil];
     
     [self testSettings];
+    
+    self.optionsTableView.backgroundColor = [UIColor clearColor];
 }
 
 -(void)testSettings {
@@ -60,8 +62,23 @@
 #pragma mark - Table View
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [[UITableViewCell alloc]init];
-    cell.backgroundColor = [UIColor redColor];
+    
+    static NSString *Identifier = @"cell";
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:Identifier];
+    
+    if (cell) {
+        return cell;
+    }
+    cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:Identifier];
+    
+    cell.backgroundColor = [UIColor clearColor];
+    
+    //Setup treshold
+    if (indexPath.row == 0) {
+        cell.textLabel.text = @"Treshold";
+        cell.textLabel.textColor = [UIColor whiteColor];
+    }
     return cell;
 }
 
@@ -72,7 +89,13 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return tableView.frame.size.height / self.settingsTypes.count;
+    if (tableView.frame.size.height / self.settingsTypes.count > 44.0) {
+        return tableView.frame.size.height / self.settingsTypes.count;
+    }
+    else {
+        return 44.0;
+    }
+    
     //return [self tableView:tableView cellForRowAtIndexPath:indexPath].frame.size.height;
 }
 
