@@ -78,6 +78,11 @@
     if (indexPath.row == 0) {
         cell.textLabel.text = @"Treshold";
         cell.textLabel.textColor = [UIColor whiteColor];
+        
+        UIButton *tresholdButton = [[UIButton alloc] initWithFrame:CGRectMake(cell.frame.size.width+100, cell.frame.size.height/2, 30, 30)];
+        tresholdButton.backgroundColor = [UIColor redColor];
+        [cell addSubview:tresholdButton];
+        
     }
     return cell;
 }
