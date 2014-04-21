@@ -27,6 +27,7 @@
 		E6F2227A19015397000302FB /* Speed.m in Sources */ = {isa = PBXBuildFile; fileRef = E6F2227919015397000302FB /* Speed.m */; };
 		E6F2227D1902811D000302FB /* icon_settings@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E6F2227C1902811D000302FB /* icon_settings@2x.png */; };
 		E6F2228319028481000302FB /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6F2228219028481000302FB /* SettingsViewController.m */; };
+		E6F9235E1905369B00A00697 /* Settings.m in Sources */ = {isa = PBXBuildFile; fileRef = E6F9235D1905369B00A00697 /* Settings.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +69,8 @@
 		E6F2227C1902811D000302FB /* icon_settings@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_settings@2x.png"; sourceTree = "<group>"; };
 		E6F2228119028481000302FB /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		E6F2228219028481000302FB /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
+		E6F9235C1905369B00A00697 /* Settings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Settings.h; sourceTree = "<group>"; };
+		E6F9235D1905369B00A00697 /* Settings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Settings.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,15 +137,17 @@
 				E64F7341190058C900EA9D57 /* Main.storyboard */,
 				E64F7344190058C900EA9D57 /* CurrentSpeedViewController.h */,
 				E64F7345190058C900EA9D57 /* CurrentSpeedViewController.m */,
-				E64F7347190058C900EA9D57 /* Images.xcassets */,
-				E64F7336190058C900EA9D57 /* Supporting Files */,
 				E64F736419005D3100EA9D57 /* LocationHandler.h */,
 				E64F736519005D3100EA9D57 /* LocationHandler.m */,
 				E6F2227819015397000302FB /* Speed.h */,
 				E6F2227919015397000302FB /* Speed.m */,
-				E6F2227B1902811D000302FB /* images */,
 				E6F2228119028481000302FB /* SettingsViewController.h */,
 				E6F2228219028481000302FB /* SettingsViewController.m */,
+				E6F9235C1905369B00A00697 /* Settings.h */,
+				E6F9235D1905369B00A00697 /* Settings.m */,
+				E64F7347190058C900EA9D57 /* Images.xcassets */,
+				E64F7336190058C900EA9D57 /* Supporting Files */,
+				E6F2227B1902811D000302FB /* images */,
 			);
 			path = TrotWatch;
 			sourceTree = "<group>";
@@ -289,6 +294,7 @@
 				E6F2228319028481000302FB /* SettingsViewController.m in Sources */,
 				E64F736619005D3100EA9D57 /* LocationHandler.m in Sources */,
 				E6F2227A19015397000302FB /* Speed.m in Sources */,
+				E6F9235E1905369B00A00697 /* Settings.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

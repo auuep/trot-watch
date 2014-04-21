@@ -7,9 +7,13 @@
 //
 
 #import "SettingsViewController.h"
+#import "Settings.h"
 
-@interface SettingsViewController ()
+@interface SettingsViewController () <UITableViewDataSource, UITableViewDelegate>
+
 @property (strong, nonatomic) IBOutlet UITableView *optionsTableView;
+@property (strong, nonatomic) NSArray *settingsTypes;
+@property (strong, nonatomic) Settings *settings;
 
 @end
 
@@ -27,7 +31,18 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    self.settings = [[Settings alloc] init];
+    self.settingsTypes = [NSArray arrayWithObjects:@"Treshold", @"MilesOrKm", @"Harr", nil];
+    
+    [self testSettings];
+}
+
+-(void)testSettings {
+    [_settings getLowerAndUpperTreshold];
+    [_settings updateLowerTreshold:5.0];
+    [_settings getLowerAndUpperTreshold];
+    [_settings updateUpperTreshold:10.0];
+    [_settings getLowerAndUpperTreshold];
 }
 
 - (void)didReceiveMemoryWarning
@@ -40,7 +55,25 @@
 
 - (IBAction)closePressed:(UIButton *)sender {
     [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+}
 
+#pragma mark - Table View
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *cell = [[UITableViewCell alloc]init];
+    cell.backgroundColor = [UIColor redColor];
+    return cell;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return self.settingsTypes.count;
+}
+
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return tableView.frame.size.height / self.settingsTypes.count;
+    //return [self tableView:tableView cellForRowAtIndexPath:indexPath].frame.size.height;
 }
 
 
