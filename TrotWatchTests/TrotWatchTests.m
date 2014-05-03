@@ -28,7 +28,12 @@
 
 - (void)testExample
 {
-    XCTFail(@"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+    //given
+    NSString *apa = @"bananätare";
+    //when
+    [self doshit:apa];
+    //then
+    XCTAssertEqual(apa, @"hästätare", @"det gick åt pipan");
 }
 
 @end

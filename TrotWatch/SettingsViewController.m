@@ -63,7 +63,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    static NSString *Identifier = @"cell";
+    static NSString *Identifier = @"cellIdentifier";
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:Identifier];
     
@@ -72,6 +72,7 @@
     }
     cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:Identifier];
     
+    cell.frame = CGRectMake(0, 0, tableView.frame.size.width, cell.frame.size.height);
     cell.backgroundColor = [UIColor clearColor];
     
     //Setup treshold
@@ -79,7 +80,7 @@
         cell.textLabel.text = @"Treshold";
         cell.textLabel.textColor = [UIColor whiteColor];
         
-        UIButton *tresholdButton = [[UIButton alloc] initWithFrame:CGRectMake(cell.frame.size.width+100, cell.frame.size.height/2, 30, 30)];
+        UIButton *tresholdButton = [[UIButton alloc] initWithFrame:CGRectMake(cell.frame.size.width - 50, cell.frame.size.height/2, 30, 30)];
         tresholdButton.backgroundColor = [UIColor redColor];
         [cell addSubview:tresholdButton];
         

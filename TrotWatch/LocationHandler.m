@@ -41,13 +41,12 @@
 #pragma mark - CLLocationManagerDelegate methods
 
 -(void)locationManager:(CLLocationManager *)theManager didFailWithError:(NSError *)error {
-    
     NSLog(@"Error: %@", error);
     NSLog(@"Failed to get location.");
     [manager stopUpdatingLocation];
     self.isUpdating = false;
-    
 }
+
 - (void)locationManager:(CLLocationManager *)theManager didUpdateLocations:(NSArray *)locations {
     CLLocation *currentLocation = [locations lastObject];
     

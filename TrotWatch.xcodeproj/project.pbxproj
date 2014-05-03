@@ -237,6 +237,9 @@
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "Daniel P Andersson";
 				TargetAttributes = {
+					E64F732B190058C900EA9D57 = {
+						DevelopmentTeam = 8KU33C22W5;
+					};
 					E64F734C190058CA00EA9D57 = {
 						TestTargetID = E64F732B190058C900EA9D57;
 					};
@@ -420,9 +423,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Ian Vannman (RLECFEZ4NW)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TrotWatch/TrotWatch-Prefix.pch";
 				INFOPLIST_FILE = "TrotWatch/TrotWatch-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -433,9 +438,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Ian Vannman (RLECFEZ4NW)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TrotWatch/TrotWatch-Prefix.pch";
 				INFOPLIST_FILE = "TrotWatch/TrotWatch-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
