@@ -16,6 +16,16 @@
 
 @implementation Settings
 
++ (id)sharedModel
+{
+    static Settings *sharedSettings = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        sharedSettings = [[self alloc] init];
+    });
+    return sharedSettings;
+}
+
 - (id)init
 {
     self = [super init];
@@ -25,23 +35,24 @@
     return self;
 }
 
-- (NSString *)getLowerAndUpperTreshold {
-    NSString *treshold = [_speedTreshold objectForKey:@"lowerTreshold"];
-   // NSLog(@"Got values. Lower = %@   Upper = %@", treshold[0], treshold[1]);
+- (NSArray *)getLowerAndUpperTreshold {
     NSArray *tresholds = [_speedTreshold objectsForKeys:[NSArray arrayWithObjects:@"lowerTreshold", @"upperTreshold" , nil] notFoundMarker:@"0.0"];
-    NSLog(@"Got tresholds. Lower = %@   Upper = %@", tresholds[0], tresholds[1]);
-
-    return treshold;
+    return tresholds;
 }
 
 - (void) updateLowerTreshold:(double)treshold {
-    [_speedTreshold setValue:[NSString stringWithFormat:@"%f",treshold] forKey:@"lowerTreshold"];
+    [_speedTreshold setValue:[NSString stringWithFormat:@"%.0f",treshold] forKey:@"lowerTreshold"];
     NSLog(@"Updated lower treshold to: %f", treshold);
 }
 
 - (void) updateUpperTreshold:(double)treshold {
-    [_speedTreshold setValue:[NSString stringWithFormat:@"%f",treshold] forKey:@"upperTreshold"];
-    NSLog(@"Updated upper treshold to: %f", treshold);
+    [_speedTreshold setValue:[NSString stringWithFormat:@"%.0f",treshold] forKey:@"upperTreshold"];
 }
+
+- (NSArray *)allowedLowerTresholdValues
+{
+    return [NSArray arrayWithObjects:@"-10",@"-9",@"-8",@"-7",@"-6",@"-5",@"-4",@"-3",@"-2",@"-1",@"0", nil];
+}
+
 
 @end
