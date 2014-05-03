@@ -19,7 +19,7 @@
     
     manager = [[CLLocationManager alloc] init];
     
-    _currentSpeed = [[Speed alloc] initWithSpeedMS:0];
+    _currentSpeed = [[Speed alloc] initWithSpeedMS:0.0f];
  
     return self;
 }
@@ -51,7 +51,12 @@
     CLLocation *currentLocation = [locations lastObject];
     
     if (currentLocation) {
-        [_currentSpeed setSpeedMeterPerSecondTo:currentLocation.speed];
+        if (currentLocation.speed > 0.0f) {
+            [_currentSpeed setSpeedMeterPerSecondTo:currentLocation.speed];
+        }
+        else {
+            [_currentSpeed setSpeedMeterPerSecondTo:0.0f];
+        }
         NSLog(@"LocationHandler: set speed to: %f", currentLocation.speed);
     }
 }

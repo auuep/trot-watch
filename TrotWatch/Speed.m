@@ -25,10 +25,19 @@
 }
 
 -(void)setSpeedMeterPerSecondTo:(double)speedMeterPerSecond {
-    self.speedMeterPerSecond = speedMeterPerSecond;
-    self.speedKmPerHour = speedMeterPerSecond * 3.6;
-    self.tempoKm = [self convertToTempo:speedMeterPerSecond unit:@"km"];
-    self.tempoMile = [self convertToTempo:speedMeterPerSecond unit:@"mile"];
+    
+    if (speedMeterPerSecond <= 0.0f) {
+        self.speedMeterPerSecond = 0.0f;
+        self.speedKmPerHour = 0.0f;
+        self.tempoKm = 0.0f;
+        self.tempoMile = 0.0f;
+    } else {
+        self.speedMeterPerSecond = speedMeterPerSecond;
+        self.speedKmPerHour = speedMeterPerSecond * 3.6;
+        self.tempoKm = [self convertToTempo:speedMeterPerSecond unit:@"km"];
+        self.tempoMile = [self convertToTempo:speedMeterPerSecond unit:@"mile"];
+    }
+    
 }
 
 -(NSString *)stringFromTempo:(double)tempo {

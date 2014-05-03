@@ -62,6 +62,8 @@
     
     self.startButton.hidden = true;
     self.startButton.enabled = false;
+    
+    self.tempoLabel.textColor = [UIColor blackColor];
 }
 
 -(void)switchButtonToStart {
@@ -70,6 +72,9 @@
     
     self.startButton.hidden = false;
     self.startButton.enabled = true;
+    
+    self.tempoLabel.textColor = [UIColor lightGrayColor];
+
 }
 
 -(void)setTempoTo:(double)tempo {
