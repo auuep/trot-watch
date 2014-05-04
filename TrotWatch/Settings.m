@@ -30,14 +30,18 @@
 {
     self = [super init];
     
-    _speedTreshold = [[NSMutableDictionary alloc] initWithObjectsAndKeys:@"0.0", @"lowerTreshold", @"0.0", @"upperTreshold", nil];
+    _speedTreshold = [[NSMutableDictionary alloc] initWithObjectsAndKeys:@"-5", @"lowerTreshold", @"5", @"upperTreshold", nil];
     
     return self;
 }
 
 - (NSArray *)getLowerAndUpperTreshold {
-    NSArray *tresholds = [_speedTreshold objectsForKeys:[NSArray arrayWithObjects:@"lowerTreshold", @"upperTreshold" , nil] notFoundMarker:@"0.0"];
+    NSArray *tresholds = [_speedTreshold objectsForKeys:[NSArray arrayWithObjects:@"lowerTreshold", @"upperTreshold" , nil] notFoundMarker:@"0"];
     return tresholds;
+}
+
+- (NSString *)getLowerTreshold {
+    return [_speedTreshold objectForKey:@"lowerTreshold"];
 }
 
 - (void) updateLowerTreshold:(double)treshold {

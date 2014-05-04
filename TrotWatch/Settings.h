@@ -14,6 +14,7 @@
 - (void) updateLowerTreshold:(double)treshold;
 - (void) updateUpperTreshold:(double)treshold;
 - (NSArray *)allowedLowerTresholdValues;
+- (NSString *)getLowerTreshold;
 
 + (id)sharedModel;
 

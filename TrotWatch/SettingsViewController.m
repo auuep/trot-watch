@@ -8,6 +8,7 @@
 
 #import "SettingsViewController.h"
 #import "Settings.h"
+#import "ILTranslucentView.h"
 
 @interface SettingsViewController () <UITableViewDataSource, UITableViewDelegate, UIPickerViewDataSource, UIPickerViewDelegate>
 
@@ -40,17 +41,28 @@
     self.optionsTableView.dataSource = self;
     self.optionsTableView.backgroundColor = [UIColor clearColor];
 
-    [self addTresholdPicker];
-   
 }
 
 -(void)addTresholdPicker
 {
-    self.pickerView = [[UIPickerView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.width-216, self.view.frame.size.height, 216)];
-    self.pickerView.backgroundColor = [UIColor whiteColor];
+    
+    self.pickerView = [[UIPickerView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.width, self.view.frame.size.height, 216)];
+    self.pickerView.backgroundColor = [UIColor colorWithRed:1.0f green:1.0f blue:1.0f alpha:0.95f];
+    self.pickerView.alpha = 0;
     self.pickerView.delegate = self;
     self.pickerView.showsSelectionIndicator = YES;
+
     [self.view addSubview:self.pickerView];
+    
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:0.4];
+    CGAffineTransform transfrom = CGAffineTransformMakeTranslation(0, -216);
+    self.pickerView.transform = transfrom;
+    self.pickerView.alpha = 1;
+    [UIView commitAnimations];
+        
+    [self.pickerView selectRow:[_settings.allowedLowerTresholdValues indexOfObject:[_settings getLowerTreshold]] inComponent:0 animated:NO];
+
 }
 
 -(void)testSettings {
@@ -73,7 +85,6 @@
     [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 }
 - (IBAction)reloadTableView:(UIButton *)sender {
-    NSLog(@"currenttreshold: %@", self.settings.getLowerAndUpperTreshold[0]);
     [self.optionsTableView reloadData];
 }
 
@@ -91,6 +102,8 @@
     
     cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:Identifier];
     
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
     cell.frame = CGRectMake(0, 0, tableView.frame.size.width, cell.frame.size.height);
     cell.backgroundColor = [UIColor clearColor];
     cell.textLabel.text = self.settingsTypes[indexPath.row];
@@ -104,7 +117,6 @@
         
         if (indexPath.row == 0) {
             tresholdLabel.text = [NSString stringWithFormat:@"%@", self.settings.getLowerAndUpperTreshold[0]];
-            NSLog(@"Cell lower treshold set text");
         } else {
             tresholdLabel.text = [NSString stringWithFormat:@"%@", self.settings.getLowerAndUpperTreshold[1]];
         }
@@ -136,6 +148,13 @@
     }
 }
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.row == 0) {
+        [self addTresholdPicker];
+    }
+}
+
 #pragma mark - UIPickerView
 
 -(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
@@ -163,17 +182,15 @@
 {
     [self.settings updateLowerTreshold:[self.settings.allowedLowerTresholdValues[row] doubleValue]];
 
-    [UIView transitionWithView:pickerView
-                      duration:0.4
-                       options:UIViewAnimationOptionTransitionCrossDissolve
-                    animations:NULL
-                    completion:NULL];
     
-    pickerView.hidden = true;
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:0.4];
+    CGAffineTransform transfrom = CGAffineTransformMakeTranslation(0, 216);
+    self.pickerView.transform = transfrom;
+    self.pickerView.alpha = 0;
+    [UIView commitAnimations];
     
-    NSLog(@"Pressed: %d", row);
     [self.optionsTableView reloadData];
-    NSLog(@"Number of items in tableview: %d", [self.optionsTableView numberOfRowsInSection:0]);
 
 }
 /*
