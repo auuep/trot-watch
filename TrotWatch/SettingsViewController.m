@@ -43,7 +43,7 @@
 
 }
 
--(void)addTresholdPicker
+-(void)openTresholdPicker:(NSString *)tresholdType
 {
     
     self.pickerView = [[UIPickerView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.width, self.view.frame.size.height, 216)];
@@ -84,6 +84,7 @@
 - (IBAction)closePressed:(UIButton *)sender {
     [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 }
+
 - (IBAction)reloadTableView:(UIButton *)sender {
     [self.optionsTableView reloadData];
 }
@@ -151,7 +152,7 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.row == 0) {
-        [self addTresholdPicker];
+        [self openTresholdPicker:self.settingsTypes[0]];
     }
 }
 
@@ -182,7 +183,7 @@
 {
     [self.settings updateLowerTreshold:[self.settings.allowedLowerTresholdValues[row] doubleValue]];
 
-    
+    //Close picker
     [UIView beginAnimations:nil context:nil];
     [UIView setAnimationDuration:0.4];
     CGAffineTransform transfrom = CGAffineTransformMakeTranslation(0, 216);
