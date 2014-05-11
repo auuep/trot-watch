@@ -110,7 +110,7 @@
     
     cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:Identifier];
     
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.selectionStyle = UITableViewCellSelectionStyleDefault;
     
     cell.frame = CGRectMake(0, 0, tableView.frame.size.width, [self tableView:tableView heightForRowAtIndexPath:indexPath]);
     cell.backgroundColor = [UIColor clearColor];
@@ -119,7 +119,7 @@
     cell.textLabel.textColor = [UIColor whiteColor];
     
     //Setup tresholds
-    if (indexPath.row == [self.settingsTypes indexOfObject:@"Measurement system"]) {
+    if (indexPath.row == [self.settingsTypes indexOfObject:@"Tresholds"]) {
        
         UILabel *tresholdLabel = [[UILabel alloc] initWithFrame:CGRectMake(tableView.frame.size.width - 180,
                                                                            0,
@@ -135,7 +135,7 @@
     }
     
     if (indexPath.row ==  [self.settingsTypes indexOfObject:@"Measurement system"]) {
-        cell.textLabel.text = [NSString stringWithFormat:@"Measurement system: %@", [self.settings getMeasurementSystem]];
+        cell.textLabel.text = [NSString stringWithFormat:@"Current locale: %@", [self.settings getMeasurementSystem]];
     }
     return cell;
 }
@@ -157,6 +157,19 @@
 //    else {
 //        return 44.0;
 //    }
+}
+
+-(NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.row == [self.settingsTypes indexOfObject:@"Tresholds"]) {
+#warning this need refactoring so that it works with the PickerViewController
+        if (self.pickerView.alpha == 1 && self.pickerView) {
+            return nil;
+        } else if (!self.pickerView)
+            return indexPath;
+    }
+    
+    return indexPath;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
