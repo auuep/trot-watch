@@ -35,6 +35,14 @@
     return self;
 }
 
+- (NSString *)getMeasurementSystem
+{   
+    NSLocale *locale = [NSLocale currentLocale];
+    
+    NSString *measurementSystem = [locale objectForKey:NSLocaleMeasurementSystem];
+    return measurementSystem;
+}
+
 - (NSArray *)getLowerAndUpperTreshold {
     NSArray *tresholds = [_speedTreshold objectsForKeys:[NSArray arrayWithObjects:@"lowerTreshold", @"upperTreshold" , nil] notFoundMarker:@"0"];
     return tresholds;

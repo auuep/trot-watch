@@ -17,6 +17,8 @@
 - (NSArray *)allowedUpperTresholdValues;
 - (NSString *)getLowerTreshold;
 - (NSString *)getUpperTreshold;
+- (NSString *)getMeasurementSystem;
+
 
 + (id)sharedModel;
 

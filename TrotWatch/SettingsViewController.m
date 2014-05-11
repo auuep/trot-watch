@@ -8,6 +8,7 @@
 
 #import "SettingsViewController.h"
 #import "Settings.h"
+#import "TWPickerViewController.h"
 
 @interface SettingsViewController () <UITableViewDataSource, UITableViewDelegate, UIPickerViewDataSource, UIPickerViewDelegate>
 
@@ -33,13 +34,19 @@
 {
     [super viewDidLoad];
     self.settings = [Settings sharedModel];
-    self.settingsTypes = [NSArray arrayWithObjects:@"Tresholds", @"MilesOrKm", nil];
+    self.settingsTypes = [NSArray arrayWithObjects:@"Tresholds", @"Measurement system", nil];
     
     //[self testSettings];
     
     self.optionsTableView.dataSource = self;
     self.optionsTableView.backgroundColor = [UIColor clearColor];
+    
+    [self setNeedsStatusBarAppearanceUpdate];
 
+}
+
+-(UIStatusBarStyle)preferredStatusBarStyle{
+    return UIStatusBarStyleLightContent;
 }
 
 -(void)openTresholdPicker:(NSString *)tresholdType
@@ -112,7 +119,7 @@
     cell.textLabel.textColor = [UIColor whiteColor];
     
     //Setup tresholds
-    if (indexPath.row == 0) {
+    if (indexPath.row == [self.settingsTypes indexOfObject:@"Measurement system"]) {
        
         UILabel *tresholdLabel = [[UILabel alloc] initWithFrame:CGRectMake(tableView.frame.size.width - 180,
                                                                            0,
@@ -125,6 +132,10 @@
         tresholdLabel.textColor = [UIColor whiteColor];
         [cell addSubview:tresholdLabel];
         
+    }
+    
+    if (indexPath.row ==  [self.settingsTypes indexOfObject:@"Measurement system"]) {
+        cell.textLabel.text = [NSString stringWithFormat:@"Measurement system: %@", [self.settings getMeasurementSystem]];
     }
     return cell;
 }
