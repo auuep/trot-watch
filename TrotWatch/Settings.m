@@ -44,6 +44,10 @@
     return [_speedTreshold objectForKey:@"lowerTreshold"];
 }
 
+- (NSString *)getUpperTreshold {
+    return [_speedTreshold objectForKey:@"upperTreshold"];
+}
+
 - (void) updateLowerTreshold:(double)treshold {
     [_speedTreshold setValue:[NSString stringWithFormat:@"%.0f",treshold] forKey:@"lowerTreshold"];
     NSLog(@"Updated lower treshold to: %f", treshold);
@@ -56,6 +60,11 @@
 - (NSArray *)allowedLowerTresholdValues
 {
     return [NSArray arrayWithObjects:@"-10",@"-9",@"-8",@"-7",@"-6",@"-5",@"-4",@"-3",@"-2",@"-1",@"0", nil];
+}
+
+- (NSArray *)allowedUpperTresholdValues
+{
+    return [NSArray arrayWithObjects:@"0",@"1",@"2",@"3",@"4",@"5",@"6",@"7",@"8",@"9",@"10", nil];
 }
 
 

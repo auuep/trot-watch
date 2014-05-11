@@ -33,7 +33,7 @@
 {
     [super viewDidLoad];
     self.settings = [Settings sharedModel];
-    self.settingsTypes = [NSArray arrayWithObjects:@"Treshold Lower", @"Treshold Upper", @"MilesOrKm", nil];
+    self.settingsTypes = [NSArray arrayWithObjects:@"Tresholds", @"MilesOrKm", nil];
     
     //[self testSettings];
     
@@ -61,6 +61,7 @@
     [UIView commitAnimations];
         
     [self.pickerView selectRow:[_settings.allowedLowerTresholdValues indexOfObject:[_settings getLowerTreshold]] inComponent:0 animated:NO];
+    [self.pickerView selectRow:[_settings.allowedUpperTresholdValues indexOfObject:[_settings getUpperTreshold]] inComponent:1 animated:NO];
 
 }
 
@@ -104,22 +105,21 @@
     
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
-    cell.frame = CGRectMake(0, 0, tableView.frame.size.width, cell.frame.size.height);
+    cell.frame = CGRectMake(0, 0, tableView.frame.size.width, [self tableView:tableView heightForRowAtIndexPath:indexPath]);
     cell.backgroundColor = [UIColor clearColor];
     cell.textLabel.text = self.settingsTypes[indexPath.row];
     
     cell.textLabel.textColor = [UIColor whiteColor];
     
     //Setup tresholds
-    if (indexPath.row == 0 || indexPath.row == 1) {
+    if (indexPath.row == 0) {
        
-        UILabel *tresholdLabel = [[UILabel alloc] initWithFrame:CGRectMake(cell.frame.size.width - 50, cell.frame.size.height/2, 30, 30)];
+        UILabel *tresholdLabel = [[UILabel alloc] initWithFrame:CGRectMake(tableView.frame.size.width - 180,
+                                                                           0,
+                                                                           130,
+                                                                           cell.frame.size.height)];
         
-        if (indexPath.row == 0) {
-            tresholdLabel.text = [NSString stringWithFormat:@"%@", self.settings.getLowerAndUpperTreshold[0]];
-        } else {
-            tresholdLabel.text = [NSString stringWithFormat:@"%@", self.settings.getLowerAndUpperTreshold[1]];
-        }
+        tresholdLabel.text = [NSString stringWithFormat:@"%@   to   %@", self.settings.getLowerAndUpperTreshold[0],self.settings.getLowerAndUpperTreshold[1]];
         
         tresholdLabel.backgroundColor = [UIColor clearColor];
         tresholdLabel.textColor = [UIColor whiteColor];
@@ -140,47 +140,83 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (tableView.frame.size.height / self.settingsTypes.count > 44.0) {
+//    if (tableView.frame.size.height / self.settingsTypes.count > 44.0) {
         return tableView.frame.size.height / self.settingsTypes.count;
-    }
-    else {
-        return 44.0;
-    }
+//    }
+//    else {
+//        return 44.0;
+//    }
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row == 0) {
-        [self openTresholdPicker:self.settingsTypes[0]];
+    switch (indexPath.row) {
+        case 0:
+            [self openTresholdPicker:self.settingsTypes[0]];
+            break;
+        case 1:
+            NSLog(@"Select km or miles");
+            break;
+        default:
+            break;
     }
+
 }
 
 #pragma mark - UIPickerView
 
 -(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
 {
-    return 1;
+    return 2;
 }
 
 -(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
 {
-    return self.settings.allowedLowerTresholdValues.count;
+    switch (component) {
+        case 0:
+            return self.settings.allowedLowerTresholdValues.count;
+            break;
+        case 1:
+            return self.settings.allowedUpperTresholdValues.count;
+            break;
+        default:
+            return 0;
+            break;
+    }
 }
 
 -(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
-    return self.settings.allowedLowerTresholdValues[row];
+    switch (component) {
+        case 0:
+            return self.settings.allowedLowerTresholdValues[row];
+            break;
+        case 1:
+            return self.settings.allowedUpperTresholdValues[row];
+            break;
+        default:
+            return @"";
+            break;
+    }
 }
 
 - (CGFloat)pickerView:(UIPickerView *)pickerView widthForComponent:(NSInteger)component {
-    int sectionWidth = self.view.frame.size.width;
+    CGFloat sectionWidth = self.view.frame.size.width/2;
     
     return sectionWidth;
 }
 
 -(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
-    [self.settings updateLowerTreshold:[self.settings.allowedLowerTresholdValues[row] doubleValue]];
+    switch (component) {
+        case 0:
+            [self.settings updateLowerTreshold:[self.settings.allowedLowerTresholdValues[row] doubleValue]];
+            break;
+        case 1:
+            [self.settings updateUpperTreshold:[self.settings.allowedUpperTresholdValues[row] doubleValue]];
+        default:
+            break;
+    }
 
     //Close picker
     [UIView beginAnimations:nil context:nil];
