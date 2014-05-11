@@ -38,11 +38,13 @@
 - (IBAction)startPressed:(UIButton *)sender {
     [_locationHandler startUpdatingLocation];
     [self switchButtonToStop];
+    [[UIApplication sharedApplication] setIdleTimerDisabled:YES];
  }
 - (IBAction)stopPressed:(id)sender {
 
     [_locationHandler stopUpdatingLocation];
     [self switchButtonToStart];
+    [[UIApplication sharedApplication] setIdleTimerDisabled:NO];
 }
 
 - (IBAction)settingsPressed:(UIButton *)sender {
