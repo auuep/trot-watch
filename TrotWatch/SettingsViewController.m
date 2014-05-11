@@ -8,7 +8,6 @@
 
 #import "SettingsViewController.h"
 #import "Settings.h"
-#import "ILTranslucentView.h"
 
 @interface SettingsViewController () <UITableViewDataSource, UITableViewDelegate, UIPickerViewDataSource, UIPickerViewDelegate>
 

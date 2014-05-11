@@ -27,7 +27,7 @@
 - (void)startUpdatingLocation {
     NSLog(@"LocationHandler: Starting to update location");
     manager.delegate = self;
-    manager.desiredAccuracy = kCLLocationAccuracyBest;
+    manager.desiredAccuracy = kCLLocationAccuracyBestForNavigation;
     [manager startUpdatingLocation];
     self.isUpdating = true;
 }
