@@ -9,6 +9,7 @@
 #import "SettingsViewController.h"
 #import "Settings.h"
 #import "TWPickerViewController.h"
+#import <Lookback/Lookback.h>
 
 @interface SettingsViewController () <UITableViewDataSource, UITableViewDelegate, UIPickerViewDataSource, UIPickerViewDelegate>
 
@@ -47,6 +48,11 @@
 
 -(UIStatusBarStyle)preferredStatusBarStyle{
     return UIStatusBarStyleLightContent;
+}
+
+- (IBAction)showLookbackRecorder:(id)sender
+{
+    [LookbackRecordingViewController presentOntoScreenAnimated:YES];
 }
 
 -(void)openTresholdPicker:(NSString *)tresholdType
@@ -91,9 +97,8 @@
 - (IBAction)closePressed:(UIButton *)sender {
     [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 }
-
-- (IBAction)reloadTableView:(UIButton *)sender {
-    [self.optionsTableView reloadData];
+- (IBAction)lookbackPressed:(UIButton *)sender {
+    [self showLookbackRecorder:(id)sender];
 }
 
 #pragma mark - Table View

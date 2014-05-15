@@ -7,12 +7,16 @@
 //
 
 #import "AppDelegate.h"
+#import <Lookback/Lookback.h>
+
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
+    [Lookback_Weak setupWithAppToken:@"s5uWJYzCsJkJvFfcN"];
+    [Lookback_Weak lookback].shakeToRecord = NO;
+    
     return YES;
 }
 							
