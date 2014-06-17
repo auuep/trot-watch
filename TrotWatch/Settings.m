@@ -76,4 +76,11 @@
 }
 
 
+
+#pragma mark - App settings
+- (BOOL)enableExtraLabels {
+    return NO;
+}
+
+
 @end

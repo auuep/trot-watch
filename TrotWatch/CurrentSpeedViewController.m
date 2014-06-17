@@ -9,6 +9,7 @@
 #import "CurrentSpeedViewController.h"
 #import "LocationHandler.h"
 #import <CoreLocation/CoreLocation.h>
+#import "Settings.h"
 
 @interface CurrentSpeedViewController () <CLLocationManagerDelegate>
 
@@ -18,6 +19,9 @@
 @property (strong, nonatomic) IBOutlet UIButton *stopButton;
 @property (strong, nonatomic) IBOutlet UIButton *startButton;
 @property (strong, nonatomic) LocationHandler *locationHandler;
+@property (strong, nonatomic) IBOutlet UILabel *tempoDescription;
+@property (strong, nonatomic) IBOutlet UILabel *speedMeterPerSecondDescription;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *tempoCenterConstraint;
 
 @end
 
@@ -33,6 +37,10 @@
     [_locationHandler addObserver:self forKeyPath:@"isUpdating" options:NSKeyValueObservingOptionNew context:nil];
     [_locationHandler addObserver:self forKeyPath:@"currentSpeed.speedMeterPerSecond" options:NSKeyValueObservingOptionNew context:nil];
 
+    if (![[Settings sharedModel] enableExtraLabels]) {
+        [self hideSpeedMS];
+        [self hideTempoDescription];        
+    }
 
 }
 - (IBAction)startPressed:(UIButton *)sender {
@@ -93,8 +101,18 @@
 
 -(NSString *)stringFromTempo:(double)tempo {
     float minutes = floor(tempo/60);
-    float seconds = round(tempo - minutes * 60);
-    return [NSString stringWithFormat:@"%.0f.%02.0f", minutes, seconds];
+    float seconds = tempo - minutes * 60;
+    return [NSString stringWithFormat:@"%.0f.%.2f", minutes, seconds];
+}
+
+-(void)hideSpeedMS {
+    _speedMeterPerSecond.hidden = YES;
+    _speedMeterPerSecondDescription.hidden = YES;
+}
+
+-(void)hideTempoDescription {
+    _tempoDescription.hidden = YES;
+    self.tempoCenterConstraint.constant = 0;
 }
 
 #pragma mark Key Value Observations
