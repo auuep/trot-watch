@@ -18,7 +18,9 @@
 - (NSString *)getLowerTreshold;
 - (NSString *)getUpperTreshold;
 - (NSString *)getMeasurementSystem;
+
 - (BOOL)enableExtraLabels;
+- (BOOL)enableHundredsOfSecondForTempo;
 
 
 + (id)sharedModel;

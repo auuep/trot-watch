@@ -77,8 +77,12 @@
 
 
 
-#pragma mark - App settings
+#pragma mark - Manual app settings (change in code)
 - (BOOL)enableExtraLabels {
+    return NO;
+}
+
+- (BOOL)enableHundredsOfSecondForTempo {
     return NO;
 }
 

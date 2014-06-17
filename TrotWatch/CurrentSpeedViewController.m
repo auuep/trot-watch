@@ -102,7 +102,10 @@
 -(NSString *)stringFromTempo:(double)tempo {
     float minutes = floor(tempo/60);
     float seconds = tempo - minutes * 60;
-    return [NSString stringWithFormat:@"%.0f.%.2f", minutes, seconds];
+    if ([[Settings sharedModel] enableHundredsOfSecondForTempo]) {
+        return [NSString stringWithFormat:@"%.0f.%.2f", minutes, seconds];
+    }
+    return [NSString stringWithFormat:@"%.0f.%.0f", minutes, seconds];
 }
 
 -(void)hideSpeedMS {
